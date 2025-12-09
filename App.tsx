@@ -5,20 +5,40 @@ import LeafDetector from './components/LeafDetector';
 import Chatbot from './components/Chatbot';
 import RetailerLocator from './components/RetailerLocator';
 import Login from './components/Login';
-import { MOCK_NODES, MOCK_WEATHER, MOCK_FORECAST, DEVELOPER_INFO } from './constants';
-import { Tab, Theme, NodeData } from './types';
+import { getForecastPrediction, getSensorNodes, getWeatherData } from './services/backend';
+import { DEVELOPER_INFO } from './constants';
+import { Tab, Theme, NodeData, ForecastHour, WeatherData } from './types';
 
 const App: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [activeTab, setActiveTab] = useState<Tab>(Tab.DASHBOARD);
   const [theme, setTheme] = useState<Theme>('light');
-  const [nodes, setNodes] = useState<NodeData[]>(MOCK_NODES);
-  const [selectedNodeId, setSelectedNodeId] = useState<string>(MOCK_NODES[0].id);
+  
+  // State data fetched from "Backend"
+  const [nodes, setNodes] = useState<NodeData[]>([]);
+  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [forecast, setForecast] = useState<ForecastHour[]>([]);
+  
+  const [selectedNodeId, setSelectedNodeId] = useState<string>('');
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
+
+  useEffect(() => {
+    // Initial Data Fetch simulating Backend calls
+    const n = getSensorNodes();
+    setNodes(n);
+    if (n.length > 0) setSelectedNodeId(n[0].id);
+
+    const w = getWeatherData();
+    setWeather(w);
+
+    const f = getForecastPrediction(w);
+    setForecast(f);
+
+  }, []);
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -78,6 +98,11 @@ const App: React.FC = () => {
     return <Login onLogin={handleLogin} />;
   }
 
+  // Guard clause if data hasn't loaded yet
+  if (!weather || nodes.length === 0) {
+    return <div className="flex items-center justify-center h-screen">Loading System Core...</div>;
+  }
+
   return (
     <Layout 
       activeTab={activeTab} 
@@ -91,8 +116,8 @@ const App: React.FC = () => {
           nodes={nodes}
           selectedNodeId={selectedNodeId}
           setSelectedNodeId={setSelectedNodeId}
-          weather={MOCK_WEATHER}
-          forecast={MOCK_FORECAST}
+          weather={weather}
+          forecast={forecast}
           onAddNode={handleAddNode}
           onDeleteNode={handleDeleteNode}
           onRenameNode={handleRenameNode}
@@ -100,7 +125,7 @@ const App: React.FC = () => {
       )}
 
       {activeTab === Tab.LEAF_DETECTOR && (
-        <LeafDetector weather={MOCK_WEATHER} nodes={nodes} />
+        <LeafDetector weather={weather} nodes={nodes} />
       )}
 
       {activeTab === Tab.RETAILERS && (
@@ -109,7 +134,7 @@ const App: React.FC = () => {
 
       {activeTab === Tab.CHATBOT && (
          <div className="h-[calc(100vh-140px)] md:h-[calc(100vh-120px)]">
-            <Chatbot weather={MOCK_WEATHER} nodes={nodes} />
+            <Chatbot weather={weather} nodes={nodes} />
          </div>
       )}
 

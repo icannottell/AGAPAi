@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { sendToGemini } from '../services/geminiService';
+import { detectPlantDisease } from '../services/backend';
 import { NodeData, WeatherData, DetectionHistoryItem } from '../types';
 import LeafDetectionHistory from './LeafDetectionHistory';
 
@@ -28,8 +28,8 @@ const LeafDetector: React.FC<Props> = ({ weather, nodes }) => {
   };
 
   const parseResult = (text: string, imageUrl: string): DetectionHistoryItem => {
-    // Attempt to extract structured data from Gemini response
-    // Expected format from prompt: **Disease:** [Name] \n **Confidence:** [Number]% \n **Action:** [Remedy]
+    // Attempt to extract structured data from AI response
+    // Expected format from backend prompt: **Disease:** [Name] \n **Confidence:** [Number]% \n **Action:** [Remedy]
     
     const diseaseMatch = text.match(/\*\*Disease:\*\*\s*(.+)/i);
     const confidenceMatch = text.match(/\*\*Confidence:\*\*\s*(\d+)/i);
@@ -51,15 +51,14 @@ const LeafDetector: React.FC<Props> = ({ weather, nodes }) => {
 
     setIsAnalyzing(true);
     
-    const prompt = "Please analyze this image for any plant diseases. Provide the output in this strict format: \n\n**Disease:** [Name]\n**Confidence:** [Number]%\n**Action:** [Remedy]\n\nThen provide a brief detailed explanation.";
-    
     try {
-      const response = await sendToGemini(prompt, [], selectedImage, weather, nodes);
+      // Call the "Backend" Service (simulating Cloud Backend > Detection Model)
+      const response = await detectPlantDisease(selectedImage, weather, nodes);
       
       setResult(response);
       
       const historyItem = parseResult(response, selectedImage);
-      // Only add to history if we got a somewhat valid response (length check or something)
+      // Only add to history if we got a somewhat valid response
       if (response && response.length > 20) {
          setHistory(prev => [...prev, historyItem]);
       }
@@ -86,7 +85,7 @@ const LeafDetector: React.FC<Props> = ({ weather, nodes }) => {
         <div className="lg:col-span-2 space-y-6">
           <div className="bg-white dark:bg-dark-card rounded-2xl p-8 shadow-sm border border-gray-100 dark:border-dark-border text-center">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">Leaf Disease AI Detector</h2>
-            <p className="text-gray-500 dark:text-gray-400 mb-8">Upload a clear photo of a crop leaf to detect potential diseases instantly using Gemini AI.</p>
+            <p className="text-gray-500 dark:text-gray-400 mb-8">Upload a clear photo of a crop leaf. The system will send it to the Cloud Backend for analysis by our Convolutional Neural Network (CNN) model.</p>
             
             <div 
               onClick={() => fileInputRef.current?.click()}
@@ -121,7 +120,7 @@ const LeafDetector: React.FC<Props> = ({ weather, nodes }) => {
                 {isAnalyzing ? (
                   <span className="flex items-center gap-2 justify-center">
                     <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                    Analyzing...
+                    Processing in Cloud...
                   </span>
                 ) : "Analyze Leaf Health"}
               </button>
@@ -147,7 +146,6 @@ const LeafDetector: React.FC<Props> = ({ weather, nodes }) => {
               <div className="prose dark:prose-invert max-w-none">
                   {result.split('\n').map((line, i) => (
                     <p key={i} className={`mb-2 ${line.startsWith('**') ? 'font-semibold text-agri-700 dark:text-agri-400' : ''}`}>
-                      {/* Simple rendering of markdown-like bold syntax from Gemini */}
                       {line.replace(/\*\*(.*?)\*\*/g, '$1')} 
                     </p>
                   ))}
