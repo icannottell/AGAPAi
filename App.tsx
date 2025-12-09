@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import Layout from './components/Layout';
 import Dashboard from './components/Dashboard';
 import LeafDetector from './components/LeafDetector';
 import Chatbot from './components/Chatbot';
 import RetailerLocator from './components/RetailerLocator';
+import Blogs from './components/Blogs';
 import Login from './components/Login';
 import { getForecastPrediction, getSensorNodes, getWeatherData } from './services/backend';
 import { DEVELOPER_INFO } from './constants';
@@ -130,6 +132,10 @@ const App: React.FC = () => {
 
       {activeTab === Tab.RETAILERS && (
         <RetailerLocator />
+      )}
+
+      {activeTab === Tab.BLOGS && (
+        <Blogs />
       )}
 
       {activeTab === Tab.CHATBOT && (

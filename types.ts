@@ -1,3 +1,4 @@
+
 export interface WeatherData {
   temp: number;
   humidity: number;
@@ -45,10 +46,22 @@ export interface DetectionHistoryItem {
   rawResult: string;
 }
 
+export interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  category: 'Farming' | 'Tools' | 'Market' | 'Tech';
+  author: string;
+  date: string;
+  imageUrl: string;
+}
+
 export enum Tab {
   DASHBOARD = 'DASHBOARD',
   LEAF_DETECTOR = 'LEAF_DETECTOR',
   RETAILERS = 'RETAILERS',
+  BLOGS = 'BLOGS',
   CHATBOT = 'CHATBOT',
   ABOUT = 'ABOUT'
 }

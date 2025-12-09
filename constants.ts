@@ -1,4 +1,5 @@
-import { ForecastHour, NodeData, WeatherData } from "./types";
+
+import { BlogPost, ForecastHour, NodeData, WeatherData } from "./types";
 
 export const BUTUAN_BARANGAYS = [
   "Ampayon", "Anticala", "Bancasi", "Banza", "Baan", "Bayanihan", "Bilay", "Bit-os", "Bood", "Bugabus",
@@ -89,6 +90,59 @@ export const MOCK_FORECAST: ForecastHour[] = [
   { hour: "+8h", temp: 28, humidity: 80, soilMoisture: 58, stressLevel: 5 },
   { hour: "+12h", temp: 26, humidity: 85, soilMoisture: 58, stressLevel: 0 },
   { hour: "+24h", temp: 29, humidity: 75, soilMoisture: 55, stressLevel: 10 },
+];
+
+export const MOCK_BLOGS: BlogPost[] = [
+  {
+    id: "1",
+    title: "Optimizing Rice Yields in Wet Season",
+    excerpt: "Learn the best practices for water management and fertilizer application during the heavy rain months in Caraga.",
+    content: "Rice farming in the wet season presents unique challenges. Excessive water can lead to submerged crops and increased susceptibility to fungal diseases. Key strategies include: \n\n1. **Proper Drainage**: Ensure your paddy fields have well-maintained drainage channels to release excess water quickly during heavy downpours. \n2. **Nutrient Management**: Apply fertilizers in split dosages to prevent leaching. Avoid excessive nitrogen which can make plants susceptible to lodging. \n3. **Variety Selection**: Choose varieties that are flood-tolerant and resistant to blast disease, which is prevalent in humid conditions.",
+    category: "Farming",
+    author: "Dr. Maria Santos, Ag.E.",
+    date: "Oct 15, 2023",
+    imageUrl: "https://images.unsplash.com/photo-1536617621572-1d5f1e6269a0?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: "2",
+    title: "Maintenance Guide: Hand Tractors (Kuliglig)",
+    excerpt: "A step-by-step guide to keeping your machinery in top shape to avoid breakdowns during the planting rush.",
+    content: "Your hand tractor is the workhorse of the farm. Regular maintenance extends its life and saves money. \n\n**Daily Checks:**\n- Check oil levels and coolant water before starting.\n- Inspect V-belts for tension and wear.\n- Greasing of moving parts.\n\n**Weekly:**\n- Clean the air filter. Dust accumulation chokes the engine.\n- Check tire pressure and lug bolts.\n\n**Storage:**\nWhen not in use, store under a shed. prolonged exposure to rain and sun rusts the chassis quickly.",
+    category: "Tools",
+    author: "Engr. J. Dela Cruz",
+    date: "Oct 10, 2023",
+    imageUrl: "https://images.unsplash.com/photo-1527847263472-aa5338d178b8?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: "3",
+    title: "Understanding Soil pH in Butuan",
+    excerpt: "Why soil acidity matters and how using agricultural lime can double your production.",
+    content: "Many farms in Agusan del Norte suffer from acidic soil (low pH), often due to continuous use of synthetic nitrogen fertilizers. \n\n**Why it matters:**\nAcidic soil locks up nutrients like Phosphorus and Magnesium, making them unavailable to plants even if you apply fertilizer. \n\n**The Solution:**\nTest your soil annually. If pH is below 5.5, apply Agricultural Lime (Apog) at least 3 weeks before planting. This neutralizes the acidity and unlocks the nutrients for your crops.",
+    category: "Farming",
+    author: "Agri-Tech Extension",
+    date: "Sep 28, 2023",
+    imageUrl: "https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: "4",
+    title: "Smart Sensors: The Future of Small Farms",
+    excerpt: "How affordable IoT devices are changing the game for smallholder farmers in the Philippines.",
+    content: "Technology is no longer just for big corporations. Low-cost sensors for moisture and temperature, like those used in the AGAPAi system, allow farmers to make data-driven decisions. \n\nInstead of guessing when to water, you can look at your dashboard. This saves water, fuel for pumps, and prevents root rot. The return on investment for a simple node system can be realized in just one cropping season through saved inputs and higher yields.",
+    category: "Tech",
+    author: "Kristel Jane Donan",
+    date: "Nov 01, 2023",
+    imageUrl: "https://images.unsplash.com/photo-1558449028-b53a39d100fc?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    id: "5",
+    title: "Market Watch: Copra and Rice Prices",
+    excerpt: "Weekly update on the buying prices in Langihan and major traders in the region.",
+    content: "As of this week, the buying price for wet palay ranges from ₱19 to ₱22 per kilo depending on moisture content and variety. \n\nCopra prices remain steady at ₱25-₱28/kilo for mill gate delivery. \n\nDemand for fresh vegetables is high due to the upcoming holidays, with prices for Ampalaya and Eggplant seeing a 15% increase at the bagsakan.",
+    category: "Market",
+    author: "Butuan Market Watch",
+    date: "Nov 05, 2023",
+    imageUrl: "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&q=80&w=800"
+  }
 ];
 
 export const DEVELOPER_INFO = {
