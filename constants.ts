@@ -81,7 +81,8 @@ export const DEVELOPER_INFO = {
   name: "Kristel Jane Donan",
   course: "BS Electronics Engineering - 3rd year",
   school: "Caraga State University (Simulated)",
-  location: "Butuan City"
+  location: "Butuan City",
+  imageUrl: "https://modest-black-hopk57mbzs-sz2qlp74e0.edgeone.dev/1698937561195.jpg"
 };
 
 export const getSystemInstruction = (weather: WeatherData, nodes: NodeData[]) => `
