@@ -4,10 +4,13 @@ import Dashboard from './components/Dashboard';
 import LeafDetector from './components/LeafDetector';
 import Chatbot from './components/Chatbot';
 import RetailerLocator from './components/RetailerLocator';
+import Login from './components/Login';
 import { MOCK_NODES, MOCK_WEATHER, MOCK_FORECAST, DEVELOPER_INFO } from './constants';
 import { Tab, Theme, NodeData } from './types';
 
 const App: React.FC = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
   const [activeTab, setActiveTab] = useState<Tab>(Tab.DASHBOARD);
   const [theme, setTheme] = useState<Theme>('light');
   const [nodes, setNodes] = useState<NodeData[]>(MOCK_NODES);
@@ -24,6 +27,11 @@ const App: React.FC = () => {
       document.documentElement.classList.remove('dark');
     }
   }, [theme]);
+
+  const handleLogin = (email: string) => {
+    setUserEmail(email);
+    setIsAuthenticated(true);
+  };
 
   // Node Management Handlers
   const handleAddNode = (name: string) => {
@@ -66,13 +74,17 @@ const App: React.FC = () => {
     setNodes(updatedNodes);
   };
 
+  if (!isAuthenticated) {
+    return <Login onLogin={handleLogin} />;
+  }
+
   return (
     <Layout 
       activeTab={activeTab} 
       setActiveTab={setActiveTab}
       theme={theme}
       toggleTheme={toggleTheme}
-      userEmail="farmer@agrasmart.ph"
+      userEmail={userEmail}
     >
       {activeTab === Tab.DASHBOARD && (
         <Dashboard 
