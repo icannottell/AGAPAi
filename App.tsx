@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import Dashboard from './components/Dashboard';
 import LeafDetector from './components/LeafDetector';
 import Chatbot from './components/Chatbot';
+import RetailerLocator from './components/RetailerLocator';
 import { MOCK_NODES, MOCK_WEATHER, MOCK_FORECAST, DEVELOPER_INFO } from './constants';
 import { Tab, Theme, NodeData } from './types';
 
@@ -90,6 +91,10 @@ const App: React.FC = () => {
         <LeafDetector weather={MOCK_WEATHER} nodes={nodes} />
       )}
 
+      {activeTab === Tab.RETAILERS && (
+        <RetailerLocator />
+      )}
+
       {activeTab === Tab.CHATBOT && (
          <div className="h-[calc(100vh-140px)] md:h-[calc(100vh-120px)]">
             <Chatbot weather={MOCK_WEATHER} nodes={nodes} />
@@ -110,8 +115,8 @@ const App: React.FC = () => {
               <ul className="list-disc pl-6 space-y-2">
                 <li>Monitor micro-climate conditions instantly.</li>
                 <li>Detect and treat crop diseases early through computer vision.</li>
+                <li>Find local retailers and resources easily.</li>
                 <li>Receive personalized, actionable advice via a natural language chatbot.</li>
-                <li>Connect with local resources and communities.</li>
               </ul>
             </div>
           </div>

@@ -48,6 +48,7 @@ export interface DetectionHistoryItem {
 export enum Tab {
   DASHBOARD = 'DASHBOARD',
   LEAF_DETECTOR = 'LEAF_DETECTOR',
+  RETAILERS = 'RETAILERS',
   CHATBOT = 'CHATBOT',
   ABOUT = 'ABOUT'
 }

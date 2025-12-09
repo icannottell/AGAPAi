@@ -51,6 +51,11 @@ const Layout: React.FC<Props> = ({ children, activeTab, setActiveTab, theme, tog
             icon={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 22h20"/><path d="M12 2v20"/><path d="M12 6c3 0 5 2 5 5 0 1.5-1 3-5 3s-5-1.5-5-3c0-3 2-5 5-5Z"/><path d="M12 14c4 0 7 2 7 6v2H5v-2c0-4 3-6 7-6Z"/></svg>} 
           />
           <NavItem 
+            tab={Tab.RETAILERS} 
+            label="Nearby Retailers" 
+            icon={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"/></svg>} 
+          />
+          <NavItem 
             tab={Tab.CHATBOT} 
             label="Chatbot" 
             icon={<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2v5Z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></svg>} 
@@ -89,6 +94,7 @@ const Layout: React.FC<Props> = ({ children, activeTab, setActiveTab, theme, tog
             <h2 className="text-lg font-semibold dark:text-white">
               {activeTab === Tab.DASHBOARD && 'Farm Dashboard'}
               {activeTab === Tab.LEAF_DETECTOR && 'Leaf Disease AI'}
+              {activeTab === Tab.RETAILERS && 'Find Retailers'}
               {activeTab === Tab.CHATBOT && 'Agri Assistant'}
               {activeTab === Tab.ABOUT && 'About Information'}
             </h2>
@@ -120,11 +126,11 @@ const Layout: React.FC<Props> = ({ children, activeTab, setActiveTab, theme, tog
             <button onClick={() => setActiveTab(Tab.LEAF_DETECTOR)} className={`p-2 rounded-lg ${activeTab === Tab.LEAF_DETECTOR ? 'text-agri-600 bg-agri-50 dark:bg-agri-900/30' : 'text-gray-500 dark:text-gray-400'}`}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"/><path d="M12 6c3 0 5 2 5 5 0 1.5-1 3-5 3s-5-1.5-5-3c0-3 2-5 5-5Z"/><path d="M12 14c4 0 7 2 7 6v2H5v-2c0-4 3-6 7-6Z"/></svg>
             </button>
+            <button onClick={() => setActiveTab(Tab.RETAILERS)} className={`p-2 rounded-lg ${activeTab === Tab.RETAILERS ? 'text-agri-600 bg-agri-50 dark:bg-agri-900/30' : 'text-gray-500 dark:text-gray-400'}`}>
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2v0a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12v0a2 2 0 0 1-2-2V7"/></svg>
+            </button>
              <button onClick={() => setActiveTab(Tab.CHATBOT)} className={`p-2 rounded-lg ${activeTab === Tab.CHATBOT ? 'text-agri-600 bg-agri-50 dark:bg-agri-900/30' : 'text-gray-500 dark:text-gray-400'}`}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4c0-1.1.9-2 2-2h8a2 2 0 0 1 2 2v5Z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></svg>
-            </button>
-             <button onClick={() => setActiveTab(Tab.ABOUT)} className={`p-2 rounded-lg ${activeTab === Tab.ABOUT ? 'text-agri-600 bg-agri-50 dark:bg-agri-900/30' : 'text-gray-500 dark:text-gray-400'}`}>
-               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
             </button>
         </div>
       </main>
