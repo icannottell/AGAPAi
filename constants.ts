@@ -15,7 +15,21 @@ export const RETAILERS = [
   { name: "Green Harvest Trading", barangay: "Langihan", items: "Organic Fertilizers" },
   { name: "Mindanao Seeds Corp", barangay: "Bancasi", items: "High yield seeds" },
   { name: "Farmer's Friend Shop", barangay: "Pianing", items: "General supplies" },
-  { name: "Caraga Agro-Industrial", barangay: "Taguibo", items: "Heavy equipment" }
+  { name: "Caraga Agro-Industrial", barangay: "Taguibo", items: "Heavy equipment" },
+  { name: "Golden Rice Farm Supply", barangay: "San Vicente", items: "Rice seeds, Sacks, Drying nets" },
+  { name: "Baan Agri-Center", barangay: "Baan", items: "Animal feeds, Vitamins, Fertilizers" },
+  { name: "Tungao Plantation Depot", barangay: "Tungao", items: "Seedlings, Grafting tools, Sprayers" },
+  { name: "Agusan Valley Machineries", barangay: "Butuan City Poblacion", items: "Tractors, Threshers, Spare parts" },
+  { name: "Los Angeles Farm & Feed", barangay: "Los Angeles", items: "Poultry supplies, Corn seeds" },
+  { name: "Masao Fisherfolk & Agri", barangay: "Masao", items: "Fishing nets, Aqua feeds, Basic tools" },
+  { name: "Sumilihon Crop Care", barangay: "Sumilihon", items: "Herbicides, Fungicides, PPE" },
+  { name: "Lemon Green House", barangay: "Lemon", items: "Pots, Shading nets, Garden soil" },
+  { name: "Taguibo Irrigation Supplies", barangay: "Taguibo", items: "Hoses, Pumps, Sprinklers" },
+  { name: "Bancasi Rotavator Services", barangay: "Bancasi", items: "Tilling services, Heavy equipment rental" },
+  { name: "Libertad Organic Hub", barangay: "Libertad", items: "Vermicast, Natural pest repellents" },
+  { name: "Anticala Mountain Farms", barangay: "Anticala", items: "Abaca seedlings, Root crops" },
+  { name: "Ong Yiu General Merchandise", barangay: "Ong Yiu", items: "Hardware, Fencing materials, Rope" },
+  { name: "Bilay Farmers Coop", barangay: "Bilay", items: "Bulk fertilizer, Cooperative supplies" }
 ];
 
 export const FARMER_GROUPS = [
